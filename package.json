@@ -1,0 +1,50 @@
+{
+  "name": "electron-react-sqlite-minimal-example",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "concurrently \"npm run start-react\" \"npm run start-electron\"",
+    "start-react": "cd src && npm start",
+    "start-electron": "wait-on http://localhost:3000 && electron .",
+    "build": "cd src && npm run build",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^7.4.0",
+    "@electron-forge/maker-squirrel": "^7.4.0",
+    "@electron-forge/maker-zip": "^7.4.0",
+    "@electron-forge/publisher-bitbucket": "^7.4.0",
+
+    "concurrently": "^8.2.2",
+    "electron": "^31.0.0",
+    "electron-forge": "^5.2.4",
+    "eslint": "^7.32.0",
+    "wait-on": "^7.2.0"
+  },
+  "dependencies": {
+    "sqlite3": "^5.1.7"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "asar": true,
+        "asarUnpack": []
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        }
+      ]
+    }
+  }
+}
